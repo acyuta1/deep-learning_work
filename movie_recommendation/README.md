@@ -1,11 +1,11 @@
 #Movie Recommendation System [User to Item]
 
 Dependencies Required:
-        => Pandas
-        => Numpy
-        => Keras
-        => Tensorflow
-        => Pickle
+1) Pandas
+2) Numpy
+3) Keras
+4) Tensorflow
+5) Pickle
         
 IDE's:
 Jupyter Notebook and Spyder
