@@ -5,7 +5,7 @@ Created on Mon Dec 23 14:56:03 2019
 @author: Achyutha.aluru
 """
 
-from my_utils import df,genres_map,tag_map
+from data_loader import df,genres_map,tag_map
 import numpy as np
 
 def prepare_inputs(movie_input):
