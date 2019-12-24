@@ -7,3 +7,6 @@ Dependencies Required:
         => Tensorflow
         => Pickle
         
+IDE's:
+Jupyter Notebook and Spyder
+        
