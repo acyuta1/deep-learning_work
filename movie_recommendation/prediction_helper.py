@@ -8,7 +8,7 @@ Created on Mon Dec 23 14:56:03 2019
 from my_utils import df,genres_map,tag_map
 import numpy as np
 
-def proper_inputs(movie_input):
+def prepare_inputs(movie_input):
     
     movies_copy = movie_input
     
