@@ -4,8 +4,8 @@
 
 from flask import Flask, render_template,request
 import numpy as np
-from my_utils import model,result
-from input_prepare import proper_inputs
+from data_load import model,result
+from prediction_helper import prepare_inputs
 
 
 app = Flask(__name__)
@@ -27,7 +27,7 @@ def predict():
         movies = [int(x) for x in comment.split(',')]
         movies = list(set(movies))
         
-        movies, g_input, t_input, movie_copy = proper_inputs(movies)
+        movies, g_input, t_input, movie_copy = prepare_inputs(movies)
         
         print(movies, t_input, g_input)
         
