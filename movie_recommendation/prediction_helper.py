@@ -8,6 +8,7 @@ def prepare_inputs(movie_input):
 
     movies_copy = movie_input
 
+
     genres, tags, genre_input, tag_input = [], [], [], []
     
     for i in movie_input:
@@ -18,7 +19,7 @@ def prepare_inputs(movie_input):
         for j in i.split():
             genre_input.append(list(genres_map.keys())[
                                    list(genres_map.values()).index(j)])
-    
+  
     genre_input = list(set(genre_input))
     N = 24 - len(genre_input)
     genre_input = np.pad(genre_input, (0, N), 'constant')
