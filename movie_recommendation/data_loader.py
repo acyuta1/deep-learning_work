@@ -15,8 +15,7 @@ tag_map = pickle.load(pickle_in)
 
 def result(movie_copy, most_similar):
 
-    recommendations_list = []
-    watched_list = []
+    recommendations_list, watched_list = [], []
 
     for i in movie_copy:
         watched_list.append(df.loc[df['movieId'] == i].values[0])
