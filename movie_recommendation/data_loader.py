@@ -1,16 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Dec 23 14:52:00 2019
-
-@author: Achyutha.aluru
-"""
 import pandas as pd
 import pickle
 from keras.models import load_model
 
 model = load_model('final_train1.h5')
 
-df = pd.read_csv('df.csv')
+df = pd.read_csv('new_df.csv')
 df['tag'] = df['tag'].fillna("")
 pickle_in = open("genres_map.pickle", "rb")
 genres_map = pickle.load(pickle_in)
@@ -21,8 +15,7 @@ tag_map = pickle.load(pickle_in)
 
 def result(movie_copy, most_similar):
 
-    recommendations_list = []
-    watched_list = []
+    recommendations_list, watched_list = [], []
 
     for i in movie_copy:
         watched_list.append(df.loc[df['movieId'] == i].values[0])
