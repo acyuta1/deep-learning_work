@@ -1,12 +1,13 @@
+# -*- coding: utf-8 -*-
 
+# -*- coding: utf-8 -*-
+
+
+from data_loader import MODEL, result
+from prediction_helper import prepare_inputs, make_prediction
 from flask import Flask, render_template, request
-import numpy as np
-from data_loader import model, result
-from prediction_helper import prepare_inputs
-
 
 app = Flask(__name__)
-model = model
 
 
 @app.route('/')
@@ -26,9 +27,9 @@ def predict():
         movies, g_input, t_input, movie_copy = prepare_inputs(movies)
 
         print(movies, t_input, g_input)
+        
+        preds = make_prediction(movies, g_input, t_input, MODEL)
 
-        preds = model.predict(
-            [np.array([movies, ]), np.array([g_input, ]), np.array([t_input, ])])
         most_similar = preds[0].argsort()[-(10+len(movie_copy)):][::-1]
 
         watched_movies, rec_movies = result(movie_copy, most_similar)
@@ -43,4 +44,6 @@ def predict():
 
 
 if __name__ == '__main__':
+    global MODEL
+    MODEL = MODEL
     app.run(threaded=False)
