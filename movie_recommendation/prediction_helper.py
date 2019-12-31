@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Dec 23 14:56:03 2019
-
-@author: Achyutha.aluru
-"""
-
 import numpy as np
 from data_loader import DF, GENRES_MAP, TAG_MAP, pad, INPUT_LENGTH
 
