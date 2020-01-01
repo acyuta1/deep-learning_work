@@ -29,7 +29,7 @@ def prepare_inputs(movie_input):
         list(GENRES_MAP.keys())[list(GENRES_MAP.values()).index(i)] for i in genres
     ]
     genres = list(set(genres))
-    genres = pad(genres, INPUT_LENGTH[1])
+    genres = pad(genres, INPUT_LENGTH["genre_len"])
     
     tags = [
         list(TAG_MAP.keys())[list(TAG_MAP.values()).index(i)]
@@ -40,8 +40,8 @@ def prepare_inputs(movie_input):
     if len(tags) > 100:
         tags = tags[0:100]
     else:
-        tags = pad(tags, INPUT_LENGTH[2])
+        tags = pad(tags, INPUT_LENGTH["tag_len"])
         
-    movie_input = pad(movie_input, INPUT_LENGTH[0])
+    movie_input = pad(movie_input, INPUT_LENGTH["movie_len"])
     
     return movie_input, genres, tags, movies_copy
