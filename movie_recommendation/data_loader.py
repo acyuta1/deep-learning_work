@@ -12,8 +12,7 @@ GENRES_MAP = pickle.load(PICKLE_IN)
 PICKLE_IN = open("tag_map.pickle", "rb")
 TAG_MAP = pickle.load(PICKLE_IN)
 
-INPUT_LENGTH = [2698, 24, 100]  # Input length required for movies, genres 
-                                # and tags
+INPUT_LENGTH = {"movie_len":2698, "genre_len":24, "tag_len":100}
 
 def pad(lst, width):
     """
