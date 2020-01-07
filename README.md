@@ -20,7 +20,7 @@ The model gives importance not only to the preferred genres of a new user, but a
         ii. Folder 'datasets' has the required datasets. But any movielens dataset will work. 
         iii. Train for atleast 2000 epochs to see good results.
 
-# starting the API locally after model is saved:
+# Flask API to deploy the model locally:
         i. pip install -r requirements.txt (Python 2), or pip3 install -r requirements.txt (Python 3)
         ii. run server.py (python server.py) to run locally.
         iii. go to URL: http://127.0.0.1:5000 
