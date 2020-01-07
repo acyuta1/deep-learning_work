@@ -25,9 +25,9 @@ def pad(lst, width):
 
 def result(movie_copy, most_similar):
     """
-    From the prediction indices, the corresponding movies are extracted 
+    From the predicted indices (MovieId's), the corresponding movies are extracted 
     from the dataset.
-    Also the original "watched" movie information is obtained.
+    Also the original "watched" movie rows are extracted for comparison purposes.
     We return two dataframes: Watched and the Recommendations.
     """
 
