@@ -2,17 +2,18 @@ import pickle
 import pandas as pd
 from keras.models import load_model
 
-MODEL = load_model("final_train1.h5")
+MODEL = load_model("hi.h5")
 
 DF = pd.read_csv("new_df.csv")
 DF["tag"] = DF["tag"].fillna("")
-PICKLE_IN = open("genres_map.pickle", "rb")
+PICKLE_IN = open("GENRES_MAP1.pickle", "rb")
 GENRES_MAP = pickle.load(PICKLE_IN)
 
-PICKLE_IN = open("tag_map.pickle", "rb")
+PICKLE_IN = open("TAG_MAP1.pickle", "rb")
 TAG_MAP = pickle.load(PICKLE_IN)
 
-INPUT_LENGTH = {"movie_len":2698, "genre_len":24, "tag_len":100}
+INPUT_LENGTH = {"movie_len":2698, "genre_len":6189}
+MOVIE_NAMES = DF.title.values.tolist()
 
 def pad(lst, width):
     """
@@ -30,8 +31,11 @@ def result(movie_copy, most_similar):
     We return two dataframes: Watched and the Recommendations.
     """
 
-    rec_movies = DF.set_index("movieId").loc[most_similar].reset_index()
+    rec_movies = DF.set_index("movieId").loc[most_similar].reset_index()    
+    blankIndex=[''] * len(rec_movies)
+    rec_movies.index=blankIndex
 
     watched_movies = DF.set_index("movieId").loc[movie_copy].reset_index()
-
+    blankIndex=[''] * len(watched_movies)
+    watched_movies.index=blankIndex
     return watched_movies, rec_movies
