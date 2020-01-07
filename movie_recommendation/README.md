@@ -5,10 +5,11 @@ The model gives importance not only to the preferred genres of a new user, but a
 
 # Dependencies:
 
-pip install pandas
-pip install keras tensoreflow
-pip install gunicorn
-pip install flask
+1. pip install pandas
+2. pip install keras==2.3.0
+3. pip install tensorflow==1.15
+3. pip install gunicorn
+4. pip install flask
 
 # Python .py files of API:
 1) server_side.py : Starts flask REST application. On POST request, calls all the required methods to obtain predictions and display them.
