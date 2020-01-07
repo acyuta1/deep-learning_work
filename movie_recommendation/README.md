@@ -16,7 +16,7 @@ The model gives importance not only to the preferred genres of a new user, but a
 # Instructions:
 
 # Training the model:
-        i. Model.ipynb notebook has the required steps to transform and build the model.
+        i. Model.ipynb notebook has the required steps to transform the dataset to required shape and build an LSTM model.
         ii. Folder dataset has the required datasets. But any movielens dataset will work. 
         iii. Train for atleast 2000 epochs to see good results.
 
