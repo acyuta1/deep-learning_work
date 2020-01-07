@@ -8,21 +8,23 @@
 </head>
 <body>
 <div class="bg-info" align="center">
-	<h2>Your watched movies: </h2>
+	<h2>Since you have seen: </h2>
 	</div>
-
-{% for table in context.table1 %}
-            {{context.title1[loop.index]}}
+	
+{% for table in context.watched_movies_table %}
+            {{context.watched_movies_titles[loop.index]}}
             {{ table|safe }}
 {% endfor %}
+
 <div class="bg-info" align="center">
 	<h2>Top Recommendations for you</h2>
 	</div>
-{% for table in context.table2 %}
-            {{context.title2[loop.index]}}
+	
+{% for table in context.rec_movies_table %}
+            {{context.rec_movies_titles[loop.index]}}
             {{ table|safe }}
 {% endfor %}
 
-
+<a  href="http://127.0.0.1:5000">Go back!!</a>
 </body>
 </html>
