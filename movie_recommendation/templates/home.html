@@ -6,15 +6,31 @@
  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/bootstrap.css')}}">
 </head>
 <body>
- 
-  <div align="center" class="bg-info">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+
+ <div align="center" class="bg-info">
  <h1>Movie Recommendation System - User to Item</h1></div>
  <div class="big" align="center">
   <form action="{{url_for('predict')}}" method="POST">
-   <h3>Enter the movies seen already</h3>
-<textarea name="comment" rows="4" cols="50"></textarea>
+  <select multiple id="mymultiselect" name="mymultiselect" multiple class="chosen-select">
+      {% for o in data %}
+      <option value = "{{o}}">{{o}}</option>
+      {% endfor %}
+    </select>
+        <script> $(".chosen-select").chosen();</script>
+    
    <br>
    <input type="submit" name="" value="Recommend" class="btn btn-info">
+    <!-- your selects go here and any other input fields -->
+    <input type="reset" value="Reset" class="btn btn-info">
+    <script> $("input[type='reset'], button[type='reset']").click(function(e){
+      setTimeout(function(){ $("select").trigger("chosen:updated"); }, 50);
+});
+ </script> 
+
   </form>
  </div>
 </body>
