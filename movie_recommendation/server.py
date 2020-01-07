@@ -1,4 +1,4 @@
-from prediction_helper import prepare_inputs, make_prediction
+from predict import prepare_inputs, make_prediction
 from data_loader import MODEL, result, MOVIE_NAMES
 from flask import Flask, render_template, request
 
