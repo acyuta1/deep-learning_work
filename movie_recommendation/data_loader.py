@@ -2,7 +2,7 @@ import pickle
 import pandas as pd
 from keras.models import load_model
 
-MODEL = load_model("hi.h5")
+MODEL = load_model("model.h5")
 
 DF = pd.read_csv("new_df.csv")
 DF["tag"] = DF["tag"].fillna("")
