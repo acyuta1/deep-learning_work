@@ -2,15 +2,24 @@ import pickle
 import pandas as pd
 from keras.models import load_model
 
-MODEL = load_model('final_train1.h5')
+MODEL = load_model("final_train1.h5")
 
-DF = pd.read_csv('new_df.csv')
-DF['tag'] = DF['tag'].fillna("")
+DF = pd.read_csv("new_df.csv")
+DF["tag"] = DF["tag"].fillna("")
 PICKLE_IN = open("genres_map.pickle", "rb")
 GENRES_MAP = pickle.load(PICKLE_IN)
 
 PICKLE_IN = open("tag_map.pickle", "rb")
 TAG_MAP = pickle.load(PICKLE_IN)
+
+INPUT_LENGTH = {"movie_len":2698, "genre_len":24, "tag_len":100}
+
+def pad(lst, width):
+    """
+    Pad inputs with 0's to the required length.
+    """
+    lst.extend([0] * (width - len(lst)))
+    return lst
 
 
 def result(movie_copy, most_similar):
@@ -20,17 +29,9 @@ def result(movie_copy, most_similar):
     Also the original "watched" movie information is obtained.
     We return two dataframes: Watched and the Recommendations.
     """
-    recommendations_list, watched_list = [], []
 
-    for i in movie_copy:
-        watched_list.append(DF.loc[DF['movieId'] == i].values[0])
-    watched_movies = pd.DataFrame(
-        watched_list, columns=['movieId', 'Title', 'Genres', 'Tags'])
+    rec_movies = DF.set_index("movieId").loc[most_similar].reset_index()
 
-    for i in most_similar:
-        if i not in movie_copy:
-            recommendations_list.append(DF.loc[DF['movieId'] == i].values[0])
-    rec_movies = pd.DataFrame(recommendations_list, columns=[
-                              'movieId', 'Title', 'Genres', 'Tags'])
+    watched_movies = DF.set_index("movieId").loc[movie_copy].reset_index()
 
     return watched_movies, rec_movies
