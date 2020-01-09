@@ -6,10 +6,10 @@ MODEL = load_model("model.h5")
 
 DF = pd.read_csv("new_df.csv")
 DF["tag"] = DF["tag"].fillna("")
-PICKLE_IN = open("GENRES_MAP1.pickle", "rb")
+PICKLE_IN = open("genres_map.pickle", "rb")
 GENRES_MAP = pickle.load(PICKLE_IN)
 
-PICKLE_IN = open("TAG_MAP1.pickle", "rb")
+PICKLE_IN = open("tag_map.pickle", "rb")
 TAG_MAP = pickle.load(PICKLE_IN)
 
 INPUT_LENGTH = {"movie_len":36, "genre_len":128}
