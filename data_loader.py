@@ -12,7 +12,7 @@ GENRES_MAP = pickle.load(PICKLE_IN)
 PICKLE_IN = open("TAG_MAP1.pickle", "rb")
 TAG_MAP = pickle.load(PICKLE_IN)
 
-INPUT_LENGTH = {"movie_len":2698, "genre_len":6189}
+INPUT_LENGTH = {"movie_len":36, "genre_len":128}
 MOVIE_NAMES = DF.title.values.tolist()
 
 def pad(lst, width):
