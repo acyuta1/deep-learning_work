@@ -1,5 +1,5 @@
 import numpy as np
-from data_loader import DF, GENRES_MAP, TAG_MAP, pad, INPUT_LENGTH
+from data_loader import DF, pad, INPUT_LENGTH
 
 
 def make_prediction(movies, g_input, model):
@@ -21,13 +21,8 @@ def prepare_inputs(movie_input):
     movie_input = [DF.movieId[DF['title']==i].iloc[0] for i in movie_input]
     movies_copy = movie_input[:]
 
-    genres = (DF.genres[DF["movieId"].isin(movie_input)].values).tolist()
-    genres = [word for line in genres for word in line.split()]
+    genres = (DF.genres_class[DF["movieId"].isin(movie_input)].values).tolist()
 
-    genres = [
-        list(GENRES_MAP.keys())[list(GENRES_MAP.values()).index(i)] for i in genres
-    ]
-    
     genres = pad(genres, INPUT_LENGTH["genre_len"])    
     movie_input = pad(movie_input, INPUT_LENGTH["movie_len"])
     
