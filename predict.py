@@ -58,6 +58,5 @@ def prepare_inputs(*args):
         genres = (DF.genres_class[DF["movieId"].isin(movie_input)].values).tolist()
         genres = pad(genres, INPUT_LENGTH["genre_len"])    
         movie_input = pad(movie_input, INPUT_LENGTH["movie_len"])
-        #movie_input = np.asarray(movie_input).astype('float32')
         
         return movie_input, genres, movies_copy
