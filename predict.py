@@ -1,6 +1,6 @@
 import numpy as np
 from random import shuffle
-from data_loader import DF, pad, INPUT_LENGTH, GENRES_TOKENS, sample
+from data_loader import DF, pad, INPUT_LENGTH, MOVIES_LIST
 
 def make_prediction(*arg):
     """
@@ -26,17 +26,14 @@ def make_prediction(*arg):
         movies = arg[0]
         g_input = arg[1]
         model = arg[2]
-        next_movie = []
-        for i in range(40): #generate 20 movies
-            array_seed = np.asarray(movies).astype('float32')/9724
-            preds = model.predict([np.array([array_seed,]),np.array([g_input,])])[0]
-            next_index = sample(preds)
-            next_movie.append(next_index[0])
-            movies.append(next_index[0])
-            g_input.append(next_index[1])       
-            movies = movies[1:]
-            g_input = g_input[1:]    
-        return next_movie
+        movies = np.asarray(movies).astype('float32')/9724
+        preds = model.predict([np.array([movies,]),np.array([g_input,])])
+        top_3_sequence = preds[0].argsort()[-3:][::-1]
+        movies = [DF.movieId[DF.movieId.isin(MOVIES_LIST[i])].values.tolist() for 
+                             i in top_3_sequence]
+        movies = [item for sublist in movies for item in sublist]
+        return movies
+        
 
 def prepare_inputs(*args):
     """
@@ -53,6 +50,9 @@ def prepare_inputs(*args):
         return g_input, movie_input, movies_copy
     else:
         movie_input = args[0]
+        if len(movie_input)>18:
+            movie_input = movie_input[len(movie_input)-18:]
+            
         movie_input = [DF.movieId[DF['title']==i].iloc[0] for i in movie_input]
         movies_copy = movie_input[:]
         genres = (DF.genres_class[DF["movieId"].isin(movie_input)].values).tolist()
@@ -60,3 +60,5 @@ def prepare_inputs(*args):
         movie_input = pad(movie_input, INPUT_LENGTH["movie_len"])
         
         return movie_input, genres, movies_copy
+        
+
