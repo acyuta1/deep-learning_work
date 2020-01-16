@@ -25,10 +25,10 @@ def predict():
             watched_movies, rec_movies = result(movie_copy, preds)
 
         context = {
-            "watched_movies_table": [watched_movies.to_html(classes="data")],
-            "watched_movies_titles": watched_movies.columns.values,
-            "rec_movies_table": [rec_movies.to_html(classes="data")],
-            "rec_movies_titles": rec_movies.columns.values,
+            "table1": [watched_movies.to_html(classes="data")],
+            "title1": watched_movies.columns.values,
+            "table2": [rec_movies.to_html(classes="data")],
+            "title2": rec_movies.columns.values,
         }
     return render_template("prediction.html", context=context)
 
