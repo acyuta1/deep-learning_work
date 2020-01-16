@@ -11,8 +11,8 @@ MOVIE_NAMES = DF.title.values.tolist()
 with open('movies_list', 'rb') as fp:
     MOVIES_LIST = pickle.load(fp)
 
-MODEL1 = load_model("hey_its_done_woopt.h5")
-MODEL2 = load_model("single_withoutopt.h5")
+MODEL1 = load_model("model_u_t_u.h5")
+MODEL2 = load_model("model_i_t_i.h5")
 
 def pad(lst, width):
     """
