@@ -32,16 +32,6 @@ def make_prediction(*arg):
         movies = [DF.movieId[DF.movieId.isin(MOVIES_LIST[i])].values.tolist() for 
                              i in top_3_sequence]
         movies = [item for sublist in movies for item in sublist]
-#        next_movie = []
-#        for i in range(40): #generate 20 movies
-#            array_seed = np.asarray(movies).astype('float32')/9724
-#            preds = model.predict([np.array([array_seed,]),np.array([g_input,])])[0]
-#            next_index = sample(preds)
-#            next_movie.append(next_index[0])
-#            movies.append(next_index[0])
-#            g_input.append(next_index[1])       
-#            movies = movies[1:]
-#            g_input = g_input[1:]    
         return movies
         
 
