@@ -12,16 +12,17 @@ def home():
 def predict():
 
     if request.method == "POST":
-
+        
         movies = request.form.getlist('mymultiselect')
+    
         if(len(movies)<7):
-            g_input, movie_input, movie_copy = prepare_inputs(movies,1)
-            preds = make_prediction(g_input, MODEL2, movie_input)
+            g_input, movie_input, movie_copy = prepare_inputs(movies,True)
+            preds = make_prediction(g_input, MODEL2, movie_input, True)
             watched_movies, rec_movies = result(movie_copy, preds)
         else:
-            movies, g_input, movie_copy = prepare_inputs(movies,2)
+            movies, g_input, movie_copy = prepare_inputs(movies,False)
             print(movies[:10],g_input[:10])
-            preds = make_prediction(movies, g_input, MODEL1, movie_copy)
+            preds = make_prediction(movies, g_input, MODEL1, False)
             watched_movies, rec_movies = result(movie_copy, preds)
 
         context = {
