@@ -1,6 +1,6 @@
 import numpy as np
 from random import shuffle
-from data_loader import DF, pad, INPUT_LENGTH, MOVIES_LIST
+from data_loader import DF, pad, INPUT_LENGTH, MOVIES_LIST, GENRES_TOKENS
 
 def make_prediction(*arg):
     """
