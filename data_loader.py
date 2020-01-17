@@ -1,11 +1,13 @@
 from keras import backend as K
 import pandas as pd
 from keras.models import load_model
+from numpy import loadtxt
 import pickle
 
 DF = pd.read_csv("df_final.csv")
 DF["tag"] = DF["tag"].fillna("")
 INPUT_LENGTH = {"movie_len":18, "genre_len":18}
+GENRES_TOKENS = loadtxt('genres_tokens.csv', delimiter=',') 
 MOVIE_NAMES = DF.title.values.tolist()
 
 with open('movies_list', 'rb') as fp:
