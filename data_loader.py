@@ -6,15 +6,18 @@ import pickle
 
 DF = pd.read_csv("df_final.csv")
 DF["tag"] = DF["tag"].fillna("")
-INPUT_LENGTH = {"movie_len":18, "genre_len":18}
 GENRES_TOKENS = loadtxt('genres_tokens.csv', delimiter=',') 
-MOVIE_NAMES = DF.title.values.tolist()
+INPUT_LENGTH = {"movie_len":18, "genre_len":18}
+with open('title_movieId_dict.pickle', 'rb') as fp:
+    TITLE_MOVIEID_DICT = pickle.load(fp)
+    
+MOVIE_NAMES = list(TITLE_MOVIEID_DICT.keys())
 
 with open('movies_list', 'rb') as fp:
-    MOVIES_LIST = pickle.load(fp)
+    MOVIES_LIST_SEQUENCE = pickle.load(fp)
 
-MODEL1 = load_model("model_u_t_u.h5")
-MODEL2 = load_model("model_i_t_i.h5")
+MODEL1 = load_model("hey_its_done_woopt.h5")
+MODEL2 = load_model("single_withoutopt.h5")
 
 def pad(lst, width):
     """
